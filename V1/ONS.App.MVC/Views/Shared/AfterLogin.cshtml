@@ -1,0 +1,57 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    
+    @*<script>
+        $(document).ready(function () {
+            $('#slider').slider({
+                range: true
+            });
+        });
+    </script>
+    <style>
+        .dropdown:hover > .dropdown-menu {
+            display: block;
+        }
+    </style>*@
+
+
+</head>
+<body ng-app="fmsApp">
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-5"></div>
+            <div class="col-lg-3">
+                <p>&copy; Time is: @DateTime.Now </p>
+                <p style="color: #5397f1">
+                    Devloped By :Rafsan Jany Chowdhury<br />
+                    Email: rafsanjany26@gmail.com
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="~/Scripts/jquery-1.11.2.js"></script>
+    <script src="~/Scripts/DataTable.js"></script>
+    <script src="~/Scripts/TableTool.js"></script>
+    <script src="~/Scripts/TableToolMin.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "RegistrationForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<br/><br />
+
+    @using (Html.BeginForm("RegistrationForm", "LogIn"))
+    {
+        <fieldset>
+          
+            <div class="form-group">
+                <label for="UserName" class="col-lg-2 control-label">User Name</label>
+                <div class="col-lg-10">
+                    <input type="text" name="UserName" class="form-control" id="UserNameId" placeholder="User Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Password" class="col-lg-2 control-label">Password</label>
+                <div class="col-lg-10">
+                    <input type="password" name="Password" class="form-control" id="PasswordId" placeholder="Password">
+
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label class="col-lg-2 control-label">User Type</label>
+                <div class="col-lg-10">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="UserType" id="UserType1" value="Client" checked="">
+                            Client
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="UserType" id="UserType2" value="OfficeWorker">
+                            Office Worker
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="reset" class="btn btn-default">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+
+
+        </fieldset>
+    }
+
+
+
+  

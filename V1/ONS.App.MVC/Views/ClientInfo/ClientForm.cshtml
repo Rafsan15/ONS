@@ -1,0 +1,199 @@
+﻿@model ONS.Core.Entities.Clients
+@{
+    ViewBag.Title = "ClientForm";
+    Layout = "~/Views/Shared/AfterLogin.cshtml";
+
+}
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@Url.Action("ClientShowAll","ClientInfo")">Home</a><span class="sr-only">(current)</span>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav nav-pills">
+                <li class=""><a href="@Url.Action("CollectionLog","ClientInfo")">Collections </a></li>
+
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class=""><a href="@Url.Action("ClientForm","ClientInfo")">Add Client </a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class=""><a href="@Url.Action("AdminProfile","ClientInfo")"><span class=" glyphicon glyphicon-user"></span> </a></li>
+
+                <li class=""><a href="@Url.Action("Index","Home")"><span class=" glyphicon glyphicon-log-out"></span> </a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+@using (Html.BeginForm("ClientForm", "ClientInfo"))
+{
+    <fieldset>
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+
+            <input type="hidden" name="UserType" value="Client"/>
+
+            <div class="form-group">
+                <label for="UserName" class="col-lg-3 control-label">User Name</label>
+                <div class="col-lg-9">
+                    <input type="text" name="UserName" class="form-control" id="UserNameId" placeholder="User Name">
+                    @Html.ValidationMessageFor(m=>m.UserName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Password" class="col-lg-3 control-label">Password</label>
+                <div class="col-lg-9">
+                    <input type="password" name="Password" class="form-control" id="PasswordId" placeholder="Password">
+                    @Html.ValidationMessageFor(m => m.Password)
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ClientName" class="col-lg-3 control-label">Name</label>
+                <div class="col-lg-9">
+                    <input type="text" name="ClientName" class="form-control" id="ClientNameId" placeholder="Name">
+                    @Html.ValidationMessageFor(m => m.ClientName)
+
+
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="ClientEmail" class="col-lg-3 control-label">Email</label>
+                <div class="col-lg-9">
+                    <input type="text" name="ClientEmail" class="form-control" id="ClientEmailId" placeholder="Email">
+                    @Html.ValidationMessageFor(m => m.ClientEmail)
+
+
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="Address" class="col-lg-3 control-label">Address</label>
+                <div class="col-lg-9">
+                    <select class="form-control" name="Address" id="AddressId">
+                        <option>Select</option>
+                        <option>Newtown 5 no</option>
+                        <option>Newtown 2 no</option>
+                        <option>Newtown 3 no</option>
+                        <option>Newtown 6 no</option>
+                        <option>Newtown 7 no</option>
+                        <option>Bahadur Bazar</option>
+                        <option>Nimtola</option>
+                        <option>Baluadanga</option>
+                        <option>Balubari</option>
+                        <option>Fokir Para</option>
+                        <option>Bus Stand</option>
+                    </select>
+                    @Html.ValidationMessageFor(m => m.Address)
+
+
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="PhoneNumber" class="col-lg-3 control-label">Phone Number</label>
+                <div class="col-lg-9">
+                    <input type="text" name="PhoneNumber" class="form-control" id="PhoneNumberId" placeholder="Phone Number">
+                    @Html.ValidationMessageFor(m => m.PhoneNumber)
+
+
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="Package" class="col-lg-3 control-label">Package</label>
+                <div class="col-lg-9">
+                    <select class="form-control" name="Package" id="PackageId">
+                        <option>1 Mbps</option>
+                        <option>2 Mbps</option>
+                        <option>3 Mbps</option>
+                        <option>4 Mbps</option>
+                        <option>5 Mbps</option>
+                    </select>
+                    @Html.ValidationMessageFor(m => m.Package)
+
+
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="MonthlyBill" class="col-lg-3 control-label">Monthly Bill</label>
+                <div class="col-lg-9">
+                    <input type="text" name="MonthlyBill" class="form-control" id="MonthlyBillId" placeholder="Monthly Bill">
+                    @Html.ValidationMessageFor(m => m.MonthlyBill)
+
+
+                </div>
+            </div>
+                      
+            <div class="form-group">
+                <label for="ConnectionFee" class="col-lg-3 control-label">Connection Fee</label>
+                <div class="col-lg-9">
+                    <input type="text" name="ConnectionFee" class="form-control" id="ConnectionFeeId" placeholder="Connection Fee">
+                    @Html.ValidationMessageFor(m => m.ConnectionFee)
+
+
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="Others" class="col-lg-3 control-label">Others</label>
+                <div class="col-lg-9">
+                    <input type="text" name="Others" class="form-control" id="OthersId" placeholder="Others">
+                    @Html.ValidationMessageFor(m => m.Others)
+
+
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="RouterFee" class="col-lg-3 control-label">Router Fee</label>
+                <div class="col-lg-9">
+                    <input type="text" name="RouterFee" class="form-control" id="RouterFeeId" placeholder="Router Fee">
+                    @Html.ValidationMessageFor(m => m.RouterFee)
+
+
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="Pay" class="col-lg-3 control-label">Pay</label>
+                <div class="col-lg-9">
+                    <input type="text" name="Pay" class="form-control" id="PayId" placeholder="Pay">
+                    @Html.ValidationMessageFor(m => m.Pay)
+
+
+                </div>
+            </div>
+      @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-lg-9 col-lg-offset-3">
+                    @Html.ActionLink("Cancle", "ClientShowAll", new { Controller = "ClientInfo", }, new { @class = "btn btn-warning" })
+
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+
+    </fieldset>
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+

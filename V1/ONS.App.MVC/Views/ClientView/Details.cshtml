@@ -1,0 +1,184 @@
+﻿@model FMS.FrameWork.Result<ONS.Core.Entities.Clients>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/AfterLogin.cshtml";
+}
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav nav-pills">
+                <li class="active"> <a class="navbar-brand" href="@Url.Action("Details","ClientView")">Profile</a></li>
+
+                <li class=""><a href="@Url.Action("PaymentHistory","ClientView")">Payment History </a></li>
+
+            </ul>
+         
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class=""><a href="@Url.Action("Index","Home")"><span class=" glyphicon glyphicon-log-out"></span> </a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+@if (ViewBag.msg == 1)
+{
+    <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Well done!!!</strong> <br />Changes Successfully Done.
+        <br />
+
+    </div>
+
+
+}
+
+@using (Html.BeginForm("Details", "ClientView"))
+{
+    <fieldset>
+        <div class="col-md-3"></div>
+
+        <input type="hidden" value="@Model.Data.ClientId" name="ClientId" />
+        <input type="hidden" value="@Model.Data.Pay" name="Paid" />
+
+        <div class="col-md-6">
+
+
+            <div class="form-group">
+                <label for="UserName" class="col-md-3 control-label">User Name</label>
+                <div class="col-md-9">
+                    <input type="text" name="UserName" value="@Model.Data.UserName" class="form-control" id="UserNameId" placeholder="User Name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Password" class="col-md-3 control-label">Password</label>
+                <div class="col-md-9">
+                    <input type="text" name="Password" value="@Model.Data.Password" class="form-control" id="PasswordId" placeholder="Password">
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ClientName" class="col-md-3 control-label">Name</label>
+                <div class="col-md-9">
+                    <input type="text" name="ClientName" value="@Model.Data.ClientName" class="form-control" id="ClientNameId" placeholder="Name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ClientEmail" class="col-md-3  control-label">Email</label>
+                <div class="col-md-9">
+                    <input type="text" name="ClientEmail" value="@Model.Data.ClientEmail" class="form-control" id="ClientEmailId" placeholder="Email">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Address" class="col-md-3  control-label">Address</label>
+                <div class="col-md-9">
+                    <input type="text" name="Address" value="@Model.Data.Address" class="form-control" id="AddressId" placeholder="Address">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="PhoneNumber" class="col-md-3  control-label">Phone Number</label>
+                <div class="col-md-9">
+                    <input type="text" name="PhoneNumber" value="@Model.Data.PhoneNumber" class="form-control" id="PhoneNumberId" placeholder="Phone Number">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="JoinDate" class="col-md-3  control-label">Join Date</label>
+                <div class="col-md-9">
+                    <input type="text" name="JoinDate" value="@Model.Data.JoinDate.ToString(string.Format("dd/MMM/yyyy"))" class="form-control" id="JoinDateId" readonly="readonly" placeholder="Join Date">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Package" class="col-md-3  control-label">Package</label>
+                <div class="col-md-9">
+                    <input type="text" name="Package" value="@Model.Data.Package" class="form-control" id="PackageId" readonly="readonly" placeholder="Package">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="MonthlyBill" class="col-md-3  control-label">Monthly Bill</label>
+                <div class="col-md-9">
+                    <input type="text" name="MonthlyBill" readonly="readonly" value="@Model.Data.MonthlyBill" class="form-control" id="MonthlyBillId" placeholder="Monthly Bill">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ConnectionFee" class="col-md-3  control-label">Connection Fee</label>
+                <div class="col-md-9">
+                    <input type="text" name="ConnectionFee" readonly="readonly" value="@Model.Data.ConnectionFee" class="form-control" id="ConnectionFeeId" placeholder="Connection Fee">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Others" class="col-md-3  control-label">Others</label>
+                <div class="col-md-9">
+                    <input type="text" name="Others" readonly="readonly" value="@Model.Data.Others" class="form-control" id="OthersId" placeholder="Others">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="RouterFee" class="col-md-3  control-label">Router Fee</label>
+                <div class="col-md-9">
+                    <input type="text" name="RouterFee" readonly="readonly"  value="@Model.Data.RouterFee" class="form-control" id="RouterFeeId" placeholder="Router Fee">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Pay" class="col-md-3  control-label">Due</label>
+                <div class="col-md-9">
+                    <input type="text" readonly="readonly" readonly="readonly"  name="Due" value="@Model.Data.Due" class="form-control" id="DueId" placeholder="Due">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Pay" class="col-md-3  control-label">Paid</label>
+                <div class="col-md-9">
+                    <input type="text" name="Pay" value="@Model.Data.Pay" readonly="readonly" class="form-control" id="PayId" placeholder="Pay">
+                </div>
+            </div>
+            @Html.AntiForgeryToken()
+
+
+            <div class="form-group">
+                <div class="col-md-9 col-lg-offset-3">
+                    <br />
+                    <button type="submit" class="btn btn-primary">Save</button>
+                 
+
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3"></div>
+    </fieldset>
+}
+

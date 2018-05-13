@@ -1,0 +1,216 @@
+﻿@using ONS.App.FrameWork
+@model FMS.FrameWork.Result<List<ONS.Core.Entities.CollectionInfo>>
+@{
+    ViewBag.Title = "CollectionLog";
+    Layout = "~/Views/Shared/AfterLogin.cshtml";
+
+}
+
+<head>
+    <title>Collection Log</title>
+    <script src="~/Scripts/DataTable.js"></script>
+    <script src="~/Scripts/jquery-1.11.2.js"></script>
+    <script src="~/Scripts/TableToolMin.js"></script>
+    <script src="~/Scripts/TableTool.js"></script>
+
+    <link href="~/Content/DataTable.css" rel="stylesheet" />
+    <link href="~/Content/TableTool.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+
+
+                var table = $('#datatable').DataTable();
+
+
+                var tableTools = new $.fn.dataTable.TableTools(table);
+                $(tableTools.fnContainer()).insertBefore('#datatable_wrapper');
+                $("#datatable_filter").hide();
+                $("#ToolTables_datatable_4").hide();
+            });
+
+
+
+            </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("ClientShowAll","ClientInfo")">Home</a><span class="sr-only">(current)</span>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                <ul class="nav navbar-nav nav-pills">
+                    <li class=""><a href="@Url.Action("CollectionLog","ClientInfo")">Collections </a></li>
+                    <li>
+                        <a href="#">
+                            <span class="badge">Total Client : </span>
+                            <span class="badge">@ViewBag.totalclient</span>
+                        </a>
+                    </li>
+
+                </ul>
+                <ul class="nav navbar-nav ">
+                    <li>
+                        <a class="btn  btn-success" data-toggle="modal" data-target=".bootstrapmodal">Total Balance</a>
+
+                        <div class="modal fade bootstrapmodal">
+                            <div class="modal-dialog">
+
+
+                                <div class="modal-content">
+
+
+                                    <div class="modal-header">
+                                        <button data-dismiss="modal" class="close">
+                                            <span>&times;</span>
+                                        </button>
+
+
+                                    </div>
+                                    <div class="modal-title">
+
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <span class="badge">@ViewBag.totalbalance</span>
+                                                Balance Is :
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="@Url.Action("ClientForm","ClientInfo")">Add Client </a></li>
+
+                </ul>
+                @*</div>
+                    <div class="col-lg-5">*@
+                <ul class="navbar-form navbar-left" role="search">
+                    @using (Html.BeginForm("CollectionLog", "ClientInfo"))
+                    {
+
+                        <div class="form-group">
+                            <input type="text" name="Key" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-info">Search</button>
+
+
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class=""><a href="@Url.Action("AdminProfile","ClientInfo")"><span class=" glyphicon glyphicon-user"></span> </a></li>
+
+                    <li class=""><a href="@Url.Action("Index","Home")"><span class=" glyphicon glyphicon-log-out"></span> </a></li>
+                </ul>
+                @*<div class="col-lg-2">
+
+
+
+                    </div>*@
+            </div>
+        </div>
+    </nav>
+
+
+    @using (Html.BeginForm("CollectionLog", "ClientInfo"))
+    {
+        <div class="col-md-3">
+
+            <select class="form-control" name="Year" id="PackageId">
+                <option>Year</option>
+                <option>2018</option>
+                <option>2017</option>
+                <option>2016</option>
+                <option>2015</option>
+                <option>2014</option>
+            </select>
+
+        </div>
+
+        <div class="col-md-3">
+
+
+            <select class="form-control" name="Month" id="PackageId">
+                <option>Month</option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-info">Search</button>
+
+        </div>
+    }
+    <div class="container">
+        <br />
+        <hr />
+        <hr />
+        <table class="table table-striped table-hover " id="datatable">
+            <thead>
+                <tr>
+                    <th>User Id</th>
+                    <th>User Name</th>
+                    <th>Amount</th>
+                    <th>Collection Date</th>
+                    <th>Detail</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.Data)
+                {
+
+                    <tr class="active">
+
+                        <td>@p.UserId</td>
+
+                        <td>@p.UserName</td>
+                        <td>@p.Amount</td>
+                        <td>@p.CollectionDate.ToString(string.Format("dd/MMM/yyyy"))</td>
+
+                        <td>
+                            @Html.ActionLink("Details", "ClientDetail", new { Controller = "ClientInfo", id = p.UserId })
+                        </td>
+
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
