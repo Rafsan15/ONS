@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewBag.Title = "CreateCost";
+    Layout = "~/Views/Shared/AfterLogin.cshtml";
+}
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@Url.Action("ClientShowAll","ClientInfo")">Home</a><span class="sr-only">(current)</span>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav nav-pills">
+                <li class=""><a href="@Url.Action("CollectionLog","ClientInfo")">Collections </a></li>
+
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class=""><a href="@Url.Action("ClientForm","ClientInfo")">Add Client </a></li>
+
+            </ul>
+            <ul class="nav navbar-nav nav-pills navbar-right">
+                <li class=""><a href="@Url.Action("AdminProfile","ClientInfo")"><span class=" glyphicon glyphicon-user"></span> </a></li>
+
+                <li class=""><a href="@Url.Action("Index","Home")"><span class=" glyphicon glyphicon-log-out"></span> </a></li>
+
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class=""><a href="@Url.Action("CostList","CostInfo")">Cost List </a></li>
+                <li class=""><a href="@Url.Action("CreateCost","CostInfo")">New Cost </a></li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+@if (ViewBag.msg == 2)
+{
+    <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Oh snap!</strong>  Your Paid a Little Much Then Your Due.
+    </div>
+}
+
+
+@using (Html.BeginForm("CreateCost", "CostInfo"))
+{
+    <fieldset>
+        <div class="col-md-2"></div>
+
+        <div class="col-md-8">
+
+
+            <div class="form-group">
+                <label for="CostName" class="col-md-3 control-label">Cost Name</label>
+                <div class="col-md-9">
+                    <input type="text" name="CostName"  class="form-control" id="CostNameId" placeholder="Cost Name">
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="IssuedBy" class="col-md-3  control-label">Issued By</label>
+                <div class="col-md-9">
+                    <input type="text" name="IssuedBy"  class="form-control" id="IssuedById" placeholder="Issued By">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="EmployeeName" class="col-md-3  control-label">Employee Name</label>
+                <div class="col-md-9">
+                    <input type="text" name="EmployeeName" class="form-control" id="EmployeeNameId" placeholder="Employee Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Amount" class="col-md-3  control-label">Amount</label>
+                <div class="col-md-9">
+                    <input type="text" name="Amount" class="form-control" id="AmountId" placeholder="Amount">
+                </div>
+            </div>
+            @Html.AntiForgeryToken()
+
+
+            <div class="form-group">
+                <div class="col-md-9 col-lg-offset-3">
+                    <br />
+                    <button type="submit" class="btn btn-primary">Pay</button>
+                    @Html.ActionLink("Cancle", "ClientShowAll", new { Controller = "ClientInfo"}, new { @class = "btn btn-success" })
+
+
+                    @*<a class="btn  btn-success" data-toggle="modal" data-target=".bootstrapmodal">Full Pay</a>
+                    <div class="modal fade bootstrapmodal">
+                        <div class="modal-dialog">
+
+
+                            <div class="modal-content">
+
+
+                                <div class="modal-header">
+
+                                    <button data-dismiss="modal" class="close">
+                                        <span>&times;</span>
+                                    </button>
+                                    <p>Confirm!!</p>
+
+
+                                </div>
+                                <div class="modal-title">
+
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <p>Are You Sure You Want To Pay @Model.Data.Due Taka</p>
+
+
+                                </div>
+
+                                <div class="modal-footer">
+
+
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                    <button type="submit" name="Pay" value="@Model.Data.Due" class="btn btn-primary">Pay</button>
+
+                                    @Html.ActionLink("Pay", "FullPay", new { Controller = "ClientInfo", id = Model.Data.ClientId }, new { @class = "btn btn-success" })
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>*@
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </fieldset>
+}
+
+
+

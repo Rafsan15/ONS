@@ -42,6 +42,7 @@
     <Compile Include="AuthenticationService.cs" />
     <Compile Include="ClientService.cs" />
     <Compile Include="CollectionInfoService.cs" />
+    <Compile Include="CostLogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersService.cs" />
   </ItemGroup>

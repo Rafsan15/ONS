@@ -154,6 +154,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClientInfoController.cs" />
     <Compile Include="Controllers\ClientViewController.cs" />
+    <Compile Include="Controllers\CostInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogInController.cs" />
     <Compile Include="Global.asax.cs">
@@ -222,6 +223,8 @@
     <Content Include="Views\ClientView\Details.cshtml" />
     <Content Include="Views\ClientView\PaymentHistory.cshtml" />
     <Content Include="Views\ClientInfo\Pay.cshtml" />
+    <Content Include="Views\CostInfo\CreateCost.cshtml" />
+    <Content Include="Views\CostInfo\CostList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

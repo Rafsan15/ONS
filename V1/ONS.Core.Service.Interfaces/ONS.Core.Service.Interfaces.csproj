@@ -42,6 +42,7 @@
     <Compile Include="IAuthenticationService.cs" />
     <Compile Include="IClientService.cs" />
     <Compile Include="ICollectionInfoService.cs" />
+    <Compile Include="ICostLogService.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="IUsersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
