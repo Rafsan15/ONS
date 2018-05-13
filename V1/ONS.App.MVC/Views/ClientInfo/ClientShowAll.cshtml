@@ -1,4 +1,6 @@
-﻿@model List<ONS.Core.Entities.Clients>
+﻿
+
+@model List<ONS.Core.Entities.Clients>
 @{
     ViewBag.Title = "ClientShowAll";
     Layout = "~/Views/Shared/AfterLogin.cshtml";
@@ -100,11 +102,13 @@
 
                                         <ul class="list-group">
                                             <li class="list-group-item">
-                                                <span class="badge">@ViewBag.totalbalance</span>
+                                                <span class="badge">@ViewBag.totalbalance</span><br/>
+                                                <span class="badge">@ViewBag.totalbalance1</span>
                                                 Balance Is :
                                             </li>
                                             <li class="list-group-item">
-                                                <span class="badge">@ViewBag.totaldue</span>
+                                                <span class="badge">@ViewBag.totaldue</span><br />
+                                                <span class="badge">@ViewBag.totaldue1</span>
                                                 Due Is:
                                             </li>
 
@@ -133,7 +137,7 @@
                     @using (Html.BeginForm("ClientShowAll", "ClientInfo"))
                     {
                         <div class="form-group">
-                            <input type="text" name="Key" class="form-control" placeholder="Search">
+                            <input type="text" name="key1" class="form-control" placeholder="Search">
                         </div>
                         <button type="submit" class="btn btn-info">Search</button>
                     }
@@ -166,7 +170,7 @@
             <h4> Search:</h4>
         </div>
         <div class="col-md-2">
-            <select class="form-control" name="Address" id="AddressId">
+            <select class="form-control" name="key1" id="AddressId">
                 <option>Address</option>
                 <option>Newtown 5 no</option>
                 <option>Newtown 2 no</option>
@@ -193,7 +197,7 @@
     @using (Html.BeginForm("ClientShowAll", "ClientInfo"))
     {
         <div class="col-md-2">
-            <select class="form-control" name="Bandwidth" id="PackageId">
+            <select class="form-control" name="key1" id="PackageId">
                 <option> BandWidth</option>
                 <option>1 Mbps</option>
                 <option>2 Mbps</option>
@@ -213,7 +217,7 @@
     {
         <div class="col-md-2">
 
-            <select class="form-control" name="Year" id="PackageId">
+            <select class="form-control" name="key2" id="PackageId">
                 <option> Year</option>
                 <option>2018</option>
                 <option>2017</option>
@@ -227,7 +231,7 @@
         <div class="col-md-2">
 
 
-            <select class="form-control" name="Month" id="PackageId">
+            <select class="form-control" name="key1" id="PackageId">
                 <option> Month</option>
                 <option>January</option>
                 <option>February</option>
@@ -313,6 +317,7 @@
                 </tbody>
             </table>
         }
+        @*@Html.PagedListPager(Model, page => Url.Action("ClientShowAll", new { page, key1 = Request.QueryString["key1"], key2 = Request.QueryString["key2"] }))*@
     </div>
 </body>
 

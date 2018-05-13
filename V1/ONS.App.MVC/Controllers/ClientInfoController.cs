@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -117,11 +118,12 @@ namespace ONS.App.MVC.Controllers
         {
             return clients.MonthlyBill + clients.ConnectionFee + clients.RouterFee + clients.Others-clients.Pay;
         }
-
-        public ActionResult ClientShowAll(int id=0)
+      
+        public ActionResult ClientShowAll( int? page,int id=0)
         {
             try
             {
+                
                 //var a = HttpUtil.CurrentUser.UserId;
                 if (id != 0)
                     ViewBag.msg = 1;
@@ -135,16 +137,19 @@ namespace ONS.App.MVC.Controllers
                     totalbalance += p.Pay;
                     totaldue += p.Due;
                 }
-                ViewBag.totalbalance = totalbalance;
-                ViewBag.totaldue = totaldue;
-                ViewBag.totalclient = result2.Count;
+
+                ViewBag.totalbalance = (totalbalance);
+                ViewBag.totaldue = (totaldue);
+                ViewBag.totalbalance1 = NumberToWord.NumberToWords((int)totalbalance);
+                ViewBag.totaldue1 = NumberToWord.NumberToWords((int)totaldue);
+                ViewBag.totalclient1 = result2.Count;
 
                 if (result.HasError)
                 {
                     ViewBag.Message = result.Message;
                     return Content("Problem is : " + result.Message);
                 }
-
+                
                 return View(result2);
             }
             catch (Exception ex)
@@ -155,42 +160,42 @@ namespace ONS.App.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult ClientShowAll(Searching searching)
+        public ActionResult ClientShowAll(int? page, string key1,string key2 )
         {
             try
             {
                 string key = "";
-                if (searching.Month != null && searching.Year != null)
+                if (key1 != null && key2 != null)
                 {
-                    if (!searching.Month.Contains("Month") && !searching.Year.Contains("Year"))
+                    if (!key1.Contains("Month") && !key2.Contains("Year"))
                     {
-                        key = searching.Month.Substring(0, 3) + "-" + searching.Year.Substring(2);
+                        key = key1.Substring(0, 3) + "-" + key2.Substring(2);
 
                     }
-                    else if (searching.Month.Contains("Month"))
+                    else if (key1.Contains("Month"))
                     {
-                        key = searching.Year.Substring(2);
+                        key = key2.Substring(2);
                     }
-                    else if (searching.Year.Contains("Year"))
+                    else if (key2.Contains("Year"))
                     {
-                        key ="-"+ searching.Month.Substring(0, 3);
+                        key = "-" + key1.Substring(0, 3);
                     }
                 }
                
-                else if (searching.Key != null)
+                else if (key2== null)
                 {
-                    key = searching.Key;
+                    key = key1;
                 }
-                else if (searching.Address != null )
-                {
-                    key = searching.Address;
+                //else if (searching.Address != null )
+                //{
+                //    key = searching.Address;
 
-                }
-                else if (searching.Bandwidth != null )
-                {
-                    key = searching.Bandwidth;
+                //}
+                //else if (searching.Bandwidth != null )
+                //{
+                //    key = searching.Bandwidth;
 
-                }
+                //}
                 else
                 {
                     key =" ";
@@ -205,8 +210,11 @@ namespace ONS.App.MVC.Controllers
                     totalbalance += p.Pay;
                     totaldue += p.Due;
                 }
-                ViewBag.totalbalance = totalbalance;
-                ViewBag.totaldue = totaldue;
+
+                ViewBag.totalbalance = (totalbalance);
+                ViewBag.totaldue = (totaldue);
+                ViewBag.totalbalance1 = NumberToWord.NumberToWords((int)totalbalance);
+                ViewBag.totaldue1 = NumberToWord.NumberToWords((int)totaldue);
                 return View(result);
             }
             catch (Exception ex)
@@ -272,7 +280,9 @@ namespace ONS.App.MVC.Controllers
                     totalbalance += p.Amount;
                    
                 }
+
                 ViewBag.totalbalance = totalbalance;
+                ViewBag.totalbalance2 = NumberToWord.NumberToWords((int)totalbalance);
                 if (result.HasError)
                 {
                     ViewBag.Message = result.Message;
@@ -329,7 +339,9 @@ namespace ONS.App.MVC.Controllers
                     totalbalance += p.Amount;
 
                 }
+
                 ViewBag.totalbalance = totalbalance;
+                ViewBag.totalbalance2 = NumberToWord.NumberToWords((int)totalbalance);
                 if (result.HasError)
                 {
                     ViewBag.Message = result.Message;
@@ -411,7 +423,7 @@ namespace ONS.App.MVC.Controllers
            
         }
 
-         [HttpPost]
+        [HttpPost]
         public ActionResult Pay(Clients clients)
         {
             try
@@ -458,7 +470,7 @@ namespace ONS.App.MVC.Controllers
             return RedirectToAction("ClientShowAll", "ClientInfo");
         }
 
-         public ActionResult FullPay(int id)
+        public ActionResult FullPay(int id)
          {
              try
              {
@@ -488,8 +500,8 @@ namespace ONS.App.MVC.Controllers
              return RedirectToAction("ClientShowAll", "ClientInfo");
          }
 
-         [HttpPost]
-         public ActionResult PayAll(FormCollection formCollection)
+        [HttpPost]
+        public ActionResult PayAll(FormCollection formCollection)
          {
              try
              {

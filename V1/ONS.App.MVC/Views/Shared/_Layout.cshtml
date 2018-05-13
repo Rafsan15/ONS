@@ -16,13 +16,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("ONS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="http://202.94.164.102/">Ftp Server</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right " >
                     <li>@Html.ActionLink("LogIn", "LoginForm", "LogIn")</li>
@@ -37,7 +38,12 @@
             <div class="col-lg-4"></div>
             <div class="col-lg-5"></div>
             <div class="col-lg-3">
-                <p>&copy; Time is: @DateTime.Now </p>
+                <span>
+                    <strong>Support:</strong>   <a href="https://www.facebook.com/ons.net.1">Facebook</a><br />
+                    <strong>Marketing:</strong> <a href="https://www.onsbd.net">support@onsbd.net</a><br />
+                    <strong>Marketing:</strong> <a href="https://www.gmail.com">onsdinajpur@gmail.com</a>
+                </span>
+                <br />
                 <p style="color: #5397f1">
                     Devloped By :Rafsan Jany Chowdhury<br />
                     Email: rafsanjany26@gmail.com
