@@ -119,7 +119,7 @@ namespace ONS.App.MVC.Controllers
             return clients.MonthlyBill + clients.ConnectionFee + clients.RouterFee + clients.Others-clients.Pay;
         }
       
-        public ActionResult ClientShowAll( int? page,int id=0)
+        public ActionResult ClientShowAll( int id=0)
         {
             try
             {
@@ -160,7 +160,7 @@ namespace ONS.App.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult ClientShowAll(int? page, string key1,string key2 )
+        public ActionResult ClientShowAll( string key1,string key2 )
         {
             try
             {
@@ -530,7 +530,7 @@ namespace ONS.App.MVC.Controllers
                 
                 
              }
-             catch (Exception ex)
+             catch (Exception)
              {
 
                  return RedirectToAction("ClientShowAll", "ClientInfo",new{ id=1});

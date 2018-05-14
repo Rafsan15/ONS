@@ -49,12 +49,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                 <ul class="nav navbar-nav nav-pills">
                     <li class=""><a href="@Url.Action("CollectionLog","ClientInfo")">Collections </a></li>
-                    <li>
-                        <a href="#">
-                            <span class="badge">Total Client : </span>
-                            <span class="badge">@ViewBag.totalclient</span>
-                        </a>
-                    </li>
+                
 
                 </ul>
                 <ul class="nav navbar-nav ">
@@ -84,7 +79,7 @@
                                         <ul class="list-group">
                                             <li class="list-group-item">
                                                 <span class="badge">@ViewBag.totalbalance</span><br />
-                                                <span class="badge">@ViewBag.totalbalance2</span>
+                                                <span class="badge">@ViewBag.totalbalance1</span>
                                                 Balance Is :
                                             </li>
 
@@ -107,11 +102,11 @@
                 @*</div>
                     <div class="col-lg-5">*@
                 <ul class="navbar-form navbar-left" role="search">
-                    @using (Html.BeginForm("CollectionLog", "ClientInfo"))
+                    @using (Html.BeginForm("CostList", "CostInfo"))
                     {
 
                         <div class="form-group">
-                            <input type="text" name="Key" class="form-control" placeholder="Search">
+                            <input type="text" name="key1" class="form-control" placeholder="Search">
                         </div>
                         <button type="submit" class="btn btn-info">Search</button>
 
@@ -138,12 +133,54 @@
     </nav>
 
 
-    @using (Html.BeginForm("CollectionLog", "ClientInfo"))
+    @using (Html.BeginForm("CostList", "CostInfo"))
     {
-        <div class="col-md-3">
+        <div class="col-md-1">
+            <h4> Search:</h4>
+        </div>
+        <div class="col-md-2">
+            <select class="form-control" name="key1" id="AddressId">
+                <option>Issued By</option>
+                <option>Jakir</option>
+                <option>Rafiq</option>
+                <option>Moin</option>
+              
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button type="submit" class="btn btn-info">Search</button>
+        </div>
 
-            <select class="form-control" name="Year" id="PackageId">
-                <option>Year</option>
+    }
+
+
+
+
+    @using (Html.BeginForm("CostList", "CostInfo"))
+    {
+        <div class="col-md-2">
+            <select class="form-control" name="key1" id="PackageId">
+                <option>Employee Name</option>
+                <option>Rafsan</option>
+                <option>Shohel</option>
+                <option>Pintu</option>
+                <option>Kabir</option>
+                <option>John</option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button type="submit" class="btn btn-info">Search</button>
+        </div>
+
+    }
+
+
+    @using (Html.BeginForm("CostList", "CostInfo"))
+    {
+        <div class="col-md-2">
+
+            <select class="form-control" name="key2" id="PackageId">
+                <option> Year</option>
                 <option>2018</option>
                 <option>2017</option>
                 <option>2016</option>
@@ -153,11 +190,11 @@
 
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
 
 
-            <select class="form-control" name="Month" id="PackageId">
-                <option>Month</option>
+            <select class="form-control" name="key1" id="PackageId">
+                <option> Month</option>
                 <option>January</option>
                 <option>February</option>
                 <option>March</option>
@@ -173,11 +210,13 @@
             </select>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-1">
             <button type="submit" class="btn btn-info">Search</button>
 
         </div>
     }
+
+    <br />
     <div class="container">
         <br />
         <hr />
@@ -210,7 +249,7 @@
                         <td>@p.CostDate.ToString(string.Format("dd/MMM/yyyy"))</td>
 
                         <td>
-                            @Html.ActionLink("Details", "ClientDetail", new { Controller = "ClientInfo", id = p.CostId })
+                            @Html.ActionLink("Details", "CostDetails", new { Controller = "CostInfo", id = p.CostId })
                         </td>
 
                     </tr>

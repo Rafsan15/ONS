@@ -21,7 +21,7 @@ namespace ATP2.FMS
             {
                 return _unityContainer.Resolve(serviceType);
             }
-            catch(Exception e)
+            catch(Exception )
             {
                 return null;
             }
@@ -33,7 +33,7 @@ namespace ATP2.FMS
             {
                 return _unityContainer.ResolveAll(serviceType);
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 return new List<object>();
             }

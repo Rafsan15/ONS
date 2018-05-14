@@ -1,4 +1,4 @@
-﻿
+﻿@model FMS.FrameWork.Result<ONS.Core.Entities.CostLog>
 @{
     ViewBag.Title = "CreateCost";
     Layout = "~/Views/Shared/AfterLogin.cshtml";
@@ -62,7 +62,7 @@
             <div class="form-group">
                 <label for="CostName" class="col-md-3 control-label">Cost Name</label>
                 <div class="col-md-9">
-                    <input type="text" name="CostName"  class="form-control" id="CostNameId" placeholder="Cost Name">
+                    <input type="text" name="CostName" value=@Model.Data.CostName class="form-control" id="CostNameId" placeholder="Cost Name">
                 </div>
             </div>
 
@@ -71,13 +71,13 @@
             <div class="form-group">
                 <label for="IssuedBy" class="col-lg-3 control-label">Issued By</label>
                 <div class="col-lg-9">
-                    <select class="form-control" name="IssuedBy" id="IssuedById">
-                        <option>Issued By</option>
+                    <select class="form-control" name="IssuedBy" value=@Model.Data.IssuedBy id="IssuedById">
+                        <option>@Model.Data.IssuedBy</option>
                         <option>Jakir</option>
                         <option>Rafiq</option>
                         <option>Moin</option>
                     </select>
-                    
+
 
 
                 </div>
@@ -86,15 +86,15 @@
             <div class="form-group">
                 <label for="EmployeeName" class="col-lg-3 control-label">Employee Name</label>
                 <div class="col-lg-9">
-                    <select class="form-control" name="EmployeeName" id="EmployeeNameId">
-                        <option>Employee Name</option>
+                    <select class="form-control" name="EmployeeName" value=@Model.Data.EmployeeName id="EmployeeNameId">
+                        <option>@Model.Data.EmployeeName</option>
                         <option>Rafsan</option>
                         <option>Shohel</option>
                         <option>Pintu</option>
                         <option>Kabir</option>
                         <option>John</option>
                     </select>
-                    
+
 
 
                 </div>
@@ -102,61 +102,61 @@
             <div class="form-group">
                 <label for="Amount" class="col-md-3  control-label">Amount</label>
                 <div class="col-md-9">
-                    <input type="text" name="Amount" class="form-control" id="AmountId" placeholder="Amount">
+                    <input type="text" name="Amount" class="form-control" value=@Model.Data.Amount id="AmountId" placeholder="Amount">
                 </div>
             </div>
             @Html.AntiForgeryToken()
 
-
+            <input type="hidden" name="CostId" value=@Model.Data.CostId />
             <div class="form-group">
                 <div class="col-md-9 col-lg-offset-3">
                     <br />
                     <button type="submit" class="btn btn-primary">Pay</button>
-                    @Html.ActionLink("Cancle", "ClientShowAll", new { Controller = "ClientInfo"}, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Cancle", "ClientShowAll", new { Controller = "ClientInfo" }, new { @class = "btn btn-success" })
 
 
                     @*<a class="btn  btn-success" data-toggle="modal" data-target=".bootstrapmodal">Full Pay</a>
-                    <div class="modal fade bootstrapmodal">
-                        <div class="modal-dialog">
+                        <div class="modal fade bootstrapmodal">
+                            <div class="modal-dialog">
 
 
-                            <div class="modal-content">
+                                <div class="modal-content">
 
 
-                                <div class="modal-header">
+                                    <div class="modal-header">
 
-                                    <button data-dismiss="modal" class="close">
-                                        <span>&times;</span>
-                                    </button>
-                                    <p>Confirm!!</p>
+                                        <button data-dismiss="modal" class="close">
+                                            <span>&times;</span>
+                                        </button>
+                                        <p>Confirm!!</p>
 
+
+                                    </div>
+                                    <div class="modal-title">
+
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <p>Are You Sure You Want To Pay @Model.Data.Due Taka</p>
+
+
+                                    </div>
+
+                                    <div class="modal-footer">
+
+
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                        <button type="submit" name="Pay" value="@Model.Data.Due" class="btn btn-primary">Pay</button>
+
+                                        @Html.ActionLink("Pay", "FullPay", new { Controller = "ClientInfo", id = Model.Data.ClientId }, new { @class = "btn btn-success" })
+
+
+                                    </div>
 
                                 </div>
-                                <div class="modal-title">
-
-                                </div>
-
-                                <div class="modal-body">
-
-                                    <p>Are You Sure You Want To Pay @Model.Data.Due Taka</p>
-
-
-                                </div>
-
-                                <div class="modal-footer">
-
-
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                    <button type="submit" name="Pay" value="@Model.Data.Due" class="btn btn-primary">Pay</button>
-
-                                    @Html.ActionLink("Pay", "FullPay", new { Controller = "ClientInfo", id = Model.Data.ClientId }, new { @class = "btn btn-success" })
-
-
-                                </div>
-
                             </div>
-                        </div>
-                    </div>*@
+                        </div>*@
 
                 </div>
             </div>

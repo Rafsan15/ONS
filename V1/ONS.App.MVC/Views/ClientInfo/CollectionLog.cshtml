@@ -8,24 +8,24 @@
 
 <head>
     <title>Collection Log</title>
-    <script src="~/Scripts/DataTable.js"></script>
+ 
     <script src="~/Scripts/jquery-1.11.2.js"></script>
-    <script src="~/Scripts/TableToolMin.js"></script>
-    <script src="~/Scripts/TableTool.js"></script>
-
-    <link href="~/Content/DataTable.css" rel="stylesheet" />
-    <link href="~/Content/TableTool.css" rel="stylesheet" />
+    <link href="~/Content/dataTables.tableTools.2.2.4.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables.min.1.10.7.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.dataTable.min.1.10.7.js"></script>
+    <script src="~/Scripts/jquery.dataTable.tabletools.min.2.2.4.js"></script>
 
     <script type="text/javascript">
             $(document).ready(function () {
 
 
                 var table = $('#datatable').DataTable();
-
-
-                var tableTools = new $.fn.dataTable.TableTools(table);
-                $(tableTools.fnContainer()).insertBefore('#datatable_wrapper');
+              
+                //var tableTools = new $.fn.dataTable.TableTools(table);
+                //alert("a");
+                //$(tableTools.fnContainer()).insertBefore('#datatable_wrapper');
                 $("#datatable_filter").hide();
+                
                 $("#ToolTables_datatable_4").hide();
             });
 
@@ -60,7 +60,7 @@
                 </ul>
                 <ul class="nav navbar-nav ">
                     <li>
-                        <a class="btn  btn-success" data-toggle="modal" data-target=".bootstrapmodal">Total Balance</a>
+                        <a class="btn  btn-success" data-toggle="modal" data-target=".bootstrapmodal">Balance</a>
 
                         <div class="modal fade bootstrapmodal">
                             <div class="modal-dialog">
@@ -118,6 +118,11 @@
 
 
                     }
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="@Url.Action("CostList","CostInfo")">Cost List </a></li>
+                    <li class=""><a href="@Url.Action("CreateCost","CostInfo")">New Cost </a></li>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class=""><a href="@Url.Action("AdminProfile","ClientInfo")"><span class=" glyphicon glyphicon-user"></span> </a></li>

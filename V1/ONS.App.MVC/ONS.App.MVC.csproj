@@ -171,9 +171,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\DataTable.css" />
-    <Content Include="Content\PagedList.css" />
-    <Content Include="Content\TableTool.css" />
+    <Content Include="Content\dataTables.tableTools.2.2.4.css" />
+    <Content Include="Content\jquery.dataTables.min.1.10.7.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -182,11 +181,12 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\ONS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\DataTable.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-1.11.2.js" />
+    <Content Include="Scripts\jquery.dataTable.min.1.10.7.js" />
+    <Content Include="Scripts\jquery.dataTable.tabletools.min.2.2.4.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -194,8 +194,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\TableTool.js" />
-    <Content Include="Scripts\TableToolMin.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -225,6 +223,7 @@
     <Content Include="Views\ClientInfo\Pay.cshtml" />
     <Content Include="Views\CostInfo\CreateCost.cshtml" />
     <Content Include="Views\CostInfo\CostList.cshtml" />
+    <Content Include="Views\CostInfo\CostDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
