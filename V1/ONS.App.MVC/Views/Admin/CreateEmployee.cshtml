@@ -1,0 +1,180 @@
+﻿@model ONS.Core.Entities.Employees
+@{
+    ViewBag.Title = "CreateEmployee";
+    Layout = "~/Views/Shared/AfterLogin.cshtml";
+}
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@Url.Action("ClientShowAll","ClientInfo")">Home</a><span class="sr-only">(current)</span>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav nav-pills">
+                <li class=""><a href="@Url.Action("CollectionLog","ClientInfo")">Collections </a></li>
+
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class=""><a href="@Url.Action("ClientForm","ClientInfo")">Add Client </a></li>
+
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class=""><a href="@Url.Action("CostList","CostInfo")">Cost List </a></li>
+                <li class=""><a href="@Url.Action("CreateCost","CostInfo")">New Cost </a></li>
+                <li class=""><a href="@Url.Action("EmployeeList","Admin")">Employee List </a></li>
+                <li class=""><a href="@Url.Action("CreateEmployee","Admin")">New Employee </a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class=""><a href="@Url.Action("AdminProfile","ClientInfo")"><span class=" glyphicon glyphicon-user"></span> </a></li>
+
+                <li class=""><a href="@Url.Action("Index","Home")"><span class=" glyphicon glyphicon-log-out"></span> </a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+@using (Html.BeginForm("CreateEmployee", "Admin"))
+{
+    <fieldset>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+
+
+            <div class="form-group">
+                <label for="EmployeeName" class="col-lg-3 control-label">Employee Name</label>
+                <div class="col-lg-9">
+                    <input type="text" name="EmployeeName" class="form-control" id="EmployeeNameId" placeholder="Employee Name">
+                    @Html.ValidationMessageFor(m => m.EmployeeName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="FatherName" class="col-lg-3 control-label">Father Name</label>
+                <div class="col-lg-9">
+                    <input type="text" name="FatherName" class="form-control" id="FatherNameId" placeholder="Father Name">
+                    @Html.ValidationMessageFor(m => m.FatherName)
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="MotherName" class="col-lg-3 control-label">Mother Name</label>
+                <div class="col-lg-9">
+                    <input type="text" name="MotherName" class="form-control" id="MotherNameId" placeholder="Mother Name">
+                    @Html.ValidationMessageFor(m => m.MotherName)
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Email" class="col-lg-3 control-label">Email</label>
+                <div class="col-lg-9">
+                    <input type="text" name="Email" class="form-control" id="EmailId" placeholder="Email">
+                    @Html.ValidationMessageFor(m => m.Email)
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="PresentAddress" class="col-lg-3 control-label">Present Address</label>
+                <div class="col-lg-9">
+                    <input type="text" name="PresentAddress" class="form-control" id="PresentAddressId" placeholder="Present Address">
+                    @Html.ValidationMessageFor(m => m.PresentAddress)
+
+
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="PermanentAddress" class="col-lg-3 control-label">Permanent Address</label>
+                <div class="col-lg-9">
+                    <input type="text" name="PermanentAddress" class="form-control" id="PermanentAddressId" placeholder="Permanent Address">
+                    @Html.ValidationMessageFor(m => m.PermanentAddress)
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Nid" class="col-lg-3 control-label">Nid</label>
+                <div class="col-lg-9">
+                    <input type="text" name="Nid" class="form-control" id="NidId" placeholder="Nid">
+                    @Html.ValidationMessageFor(m => m.Nid)
+
+
+                </div>
+            </div>
+
+            <div>
+                <div class="form-group">
+                    <label for="DOB" class="col-lg-3 control-label">Date Of Birth</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" id="DOBId" name="DOB" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date of Brith">
+                    </div>
+                    @Html.ValidationMessageFor(m => m.DOB)
+                </div>
+
+            </div>
+
+   
+
+            <div class="form-group">
+                <label for="Mobile" class="col-lg-3 control-label">Mobile</label>
+                <div class="col-lg-9">
+                    <input type="text" name="Mobile" class="form-control" id="MobileId" placeholder="Mobile">
+                    @Html.ValidationMessageFor(m => m.Mobile)
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Designation" class="col-lg-3 control-label">Designation </label>
+                <div class="col-lg-9">
+                    <input type="text" name="Designation" class="form-control" id="DesignationId" placeholder="Designation">
+                    @Html.ValidationMessageFor(m => m.Designation)
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Salary" class="col-lg-3 control-label">Salary</label>
+                <div class="col-lg-9">
+                    <input type="text" name="Salary" class="form-control" id="OthersId" placeholder="Salary">
+                    @Html.ValidationMessageFor(m => m.Salary)
+
+
+                </div>
+            </div>
+
+       
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-lg-9 col-lg-offset-3">
+                    @Html.ActionLink("Cancel", "EmployeeList", new { Controller = "Admin", }, new { @class = "btn btn-warning" })
+
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+
+    </fieldset>
+}
+

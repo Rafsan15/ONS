@@ -25,21 +25,17 @@ namespace ONS.Service
                 {
                     Clients.ClientId = GetId();
                     var joindate = DateTime.Now.ToString(string.Format("dd/MMM/yyyy"));
-                    query = "insert into Clients values(" + Clients.ClientId + ",'" + Clients.ClientName.ToUpper() + "','" + Clients.ClientEmail.ToUpper() + "','" + Clients.Address.ToUpper() + "','" + Clients.PhoneNumber.ToUpper() + "','" + Clients.Package.ToUpper() + "'," + Clients.MonthlyBill + "," + Clients.ConnectionFee + "," + Clients.Others + "," + Clients.RouterFee + "," + Clients.Pay + ",'" + joindate + "'," + Clients.Due + ",'" + Clients.UserName.ToUpper() + "','" + Clients.Password.ToUpper() + "','" + Clients.UserType.ToUpper() + "',"+0+")";
+                    query = "insert into Clients values(" + Clients.ClientId + ",'" + Clients.ClientName.ToUpper() + "','" + Clients.ClientEmail.ToUpper() + "','" + Clients.Address.ToUpper() + "','" + Clients.PhoneNumber.ToUpper() + "','" + Clients.Package.ToUpper() + "'," + Clients.MonthlyBill + "," + Clients.ConnectionFee + "," + Clients.Others + "," + Clients.RouterFee + "," + Clients.Pay + ",'" + joindate + "'," + Clients.Due + ",'" + Clients.UserName.ToUpper() + "','" + Clients.Password.ToUpper() + "','" + Clients.UserType.ToUpper() + "'," + 0 + "," + 0 + ")";
                 }
                 else
                 {
-                   
+
                     query = "update Clients set ClientName='" + Clients.ClientName.ToUpper() + "',PhoneNumber='" + Clients.PhoneNumber.ToUpper() + "',UserName='" + Clients.UserName.ToUpper() + "',Password='" + Clients.Password.ToUpper() + "',Address='" + Clients.Address.ToUpper() + "',ClientEmail='" + Clients.ClientEmail.ToUpper() + "',Package='" + Clients.Package.ToUpper() + "',MonthlyBill=" + Clients.MonthlyBill + ",Pay=" + Clients.Pay + " " + ",Due=" + Clients.Due + " " +
                             " where ClientId=" + Clients.ClientId;
 
 
                 }
 
-                //if (!IsValid(Clients, result))
-                //{
-                //    return result;
-                //}
 
                 result.HasError = DataAccess.ExecuteQuery(query) <= 0;
 
@@ -189,6 +185,28 @@ namespace ONS.Service
             return result;
         }
 
+        public Result<Clients> MonthDue(int id)
+        {
+            var result = new Result<Clients>();
+            try
+            {
+
+
+                string query = "update Clients set IsNewMonth=" + 1 + " where ClientId=" + id;
+
+
+                result.HasError = DataAccess.ExecuteQuery(query) <= 0;
+
+
+            }
+            catch (Exception ex)
+            {
+                result.HasError = true;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+
         public Result<Clients> Payment(Clients clients)
         {
             var result = new Result<Clients>();
@@ -243,6 +261,7 @@ namespace ONS.Service
                 u.ConnectionFee = Int32.Parse(row["ConnectionFee"].ToString());
                 u.Others = Int32.Parse(row["Others"].ToString());
                 u.IsValid = Int32.Parse(row["IsValid"].ToString());
+                u.IsNewMonth = Int32.Parse(row["IsNewMonth"].ToString());
                 u.ClientEmail = row["ClientEmail"].ToString().ToLower();
                 u.ClientName = row["ClientName"].ToString().Substring(0, 1).ToUpper() + row["ClientName"].ToString().Substring(1).ToLower();
                 u.UserName = row["UserName"].ToString().Substring(0, 1).ToUpper() + row["UserName"].ToString().Substring(1).ToLower();

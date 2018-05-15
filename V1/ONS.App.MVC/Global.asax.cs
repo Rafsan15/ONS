@@ -28,6 +28,7 @@ namespace ONS.App.MVC
             container.RegisterType<IClientService, ClientService>();
             container.RegisterType<ICollectionInfoService, CollectionInfoService>();
             container.RegisterType<ICostLogService, CostLogService>();
+            container.RegisterType<IEmployeeService, EmployeeService>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 

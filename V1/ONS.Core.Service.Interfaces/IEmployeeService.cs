@@ -8,10 +8,10 @@ using ONS.Core.Entities;
 
 namespace ONS.Core.Service.Interfaces
 {
-    public interface IClientService:IService<Clients>
+    public interface IEmployeeService:IService<Employees>
     {
-        Result<Clients> Hide(int id);
-        Result<Clients> Payment(Clients clients);
+        Result<Employees> DueSet(Employees Employees);
         Result<Clients> MonthDue(int id);
+
     }
 }

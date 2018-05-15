@@ -62,6 +62,8 @@ namespace ONS.Core.Entities
 
        public int IsValid { get; set; }
 
+       public int IsNewMonth { get; set; }
+
 
     }
 }

@@ -1,4 +1,4 @@
-﻿@model FMS.FrameWork.Result<List<ONS.Core.Entities.CostLog>>
+﻿@model ONS.App.MVC.View_Model.CostListModel
 @{
     ViewBag.Title = "CostList";
     Layout = "~/Views/Shared/AfterLogin.cshtml";
@@ -7,13 +7,12 @@
 
 <head>
     <title>Collection Log</title>
-    <script src="~/Scripts/DataTable.js"></script>
     <script src="~/Scripts/jquery-1.11.2.js"></script>
-    <script src="~/Scripts/TableToolMin.js"></script>
-    <script src="~/Scripts/TableTool.js"></script>
 
-    <link href="~/Content/DataTable.css" rel="stylesheet" />
-    <link href="~/Content/TableTool.css" rel="stylesheet" />
+    <link href="~/Content/dataTables.tableTools.2.2.4.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables.min.1.10.7.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.dataTable.min.1.10.7.js"></script>
+    <script src="~/Scripts/jquery.dataTable.tabletools.min.2.2.4.js"></script>
 
     <script type="text/javascript">
             $(document).ready(function () {
@@ -22,8 +21,8 @@
                 var table = $('#datatable').DataTable();
 
 
-                var tableTools = new $.fn.dataTable.TableTools(table);
-                $(tableTools.fnContainer()).insertBefore('#datatable_wrapper');
+            
+              
                 $("#datatable_filter").hide();
                 $("#ToolTables_datatable_4").hide();
             });
@@ -54,7 +53,7 @@
                 </ul>
                 <ul class="nav navbar-nav ">
                     <li>
-                        <a class="btn  btn-success" data-toggle="modal" data-target=".bootstrapmodal">Total Balance</a>
+                        @*<a class="btn  btn-success" data-toggle="modal" data-target=".bootstrapmodal">Total Balance</a>
 
                         <div class="modal fade bootstrapmodal">
                             <div class="modal-dialog">
@@ -91,7 +90,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
+
                     </li>
                 </ul>
 
@@ -99,8 +99,14 @@
                     <li class=""><a href="@Url.Action("ClientForm","ClientInfo")">Add Client </a></li>
 
                 </ul>
-                @*</div>
-                    <div class="col-lg-5">*@
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="@Url.Action("CostList","CostInfo")">Cost List </a></li>
+                    <li class=""><a href="@Url.Action("CreateCost","CostInfo")">New Cost </a></li>
+                    <li class=""><a href="@Url.Action("EmployeeList","Admin")">Employee List </a></li>
+                    <li class=""><a href="@Url.Action("CreateEmployee","Admin")">New Employee </a></li>
+
+                </ul>
+             
                 <ul class="navbar-form navbar-left" role="search">
                     @using (Html.BeginForm("CostList", "CostInfo"))
                     {
@@ -113,11 +119,7 @@
 
                     }
                 </ul>
-                <ul class="nav navbar-nav">
-                    <li class=""><a href="@Url.Action("CostList","CostInfo")">Cost List </a></li>
-                    <li class=""><a href="@Url.Action("CreateCost","CostInfo")">New Cost </a></li>
-
-                </ul>
+          
                 <ul class="nav navbar-nav navbar-right">
                     <li class=""><a href="@Url.Action("AdminProfile","ClientInfo")"><span class=" glyphicon glyphicon-user"></span> </a></li>
 
@@ -131,7 +133,13 @@
             </div>
         </div>
     </nav>
-
+    @if (ViewBag.msg == 1)
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Oh snap!</strong>  Select Some Row First.
+        </div>
+    }
 
     @using (Html.BeginForm("CostList", "CostInfo"))
     {
@@ -139,13 +147,26 @@
             <h4> Search:</h4>
         </div>
         <div class="col-md-2">
-            <select class="form-control" name="key1" id="AddressId">
-                <option>Issued By</option>
-                <option>Jakir</option>
-                <option>Rafiq</option>
-                <option>Moin</option>
-              
-            </select>
+            <input type="text" class="form-control" name="key1" id="CostNameId" placeholder="Cost Name:" list="datalist1">
+            <datalist id="datalist1" name="key1">
+                <option>Salary</option>
+                <option>Transportation</option>
+                <option>Guest Bill</option>
+                <option>Internet Bill</option>
+                <option>Other Cost</option>
+                <option>Electricity Bill</option>
+                <option>Stationary Cost</option>
+                <option>Device Cost</option>
+                <option>Oil Cost</option>
+                <option>Mobile Bill</option>
+                <option>Construction Bill</option>
+                <option>Goods Bill</option>
+                <option>Tower Bill</option>
+                <option>Vehicle Bill</option>
+                <option>Intensive</option>
+                <option>DA</option>
+                <option>Festive </option>
+            </datalist>
         </div>
         <div class="col-md-1">
             <button type="submit" class="btn btn-info">Search</button>
@@ -161,11 +182,10 @@
         <div class="col-md-2">
             <select class="form-control" name="key1" id="PackageId">
                 <option>Employee Name</option>
-                <option>Rafsan</option>
-                <option>Shohel</option>
-                <option>Pintu</option>
-                <option>Kabir</option>
-                <option>John</option>
+                @foreach (var p in Model.Employees)
+                {
+                    <option>@p.EmployeeName</option>
+                }
             </select>
         </div>
         <div class="col-md-1">
@@ -216,10 +236,48 @@
         </div>
     }
 
-    <br />
+ 
     <div class="container">
         <br />
         <hr />
+        <a class="btn  btn-info" data-toggle="modal" data-target=".bootstrapmodal">Total Balance</a>
+
+        <div class="modal fade bootstrapmodal">
+            <div class="modal-dialog">
+
+
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <button data-dismiss="modal" class="close">
+                            <span>&times;</span>
+                        </button>
+
+
+                    </div>
+                    <div class="modal-title">
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge">@ViewBag.totalbalance</span><br />
+                                <span class="badge">@ViewBag.totalbalance1</span>
+                                Balance Is :
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <hr />
         <table class="table table-striped table-hover " id="datatable">
             <thead>
@@ -236,7 +294,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var p in Model.Data)
+                @foreach (var p in Model.CostLogs)
                 {
 
                     <tr class="active">

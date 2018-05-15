@@ -54,7 +54,7 @@ namespace ONS.App.MVC.Controllers
                 collection.UserName = clients.ClientName;
                 if (clients.ClientId == 0)
                 {
-                    clients.Due = setdue(clients);
+                    clients.Due = clients.MonthlyBill + clients.ConnectionFee + clients.RouterFee + clients.Others - clients.Pay;
                   
                 }
 
@@ -65,7 +65,7 @@ namespace ONS.App.MVC.Controllers
                         ViewBag.msg = 2;
                         return RedirectToAction("ClientDetail", "ClientInfo",new{id=clients.ClientId,id2=2});
                     }
-                    clients.Due = getdue(clients);
+                    clients.Due = getdue(clients); 
                     collection.UserId = clients.ClientId;
                 }
                 clients.Pay = clients.Paid + clients.Pay;
@@ -97,9 +97,26 @@ namespace ONS.App.MVC.Controllers
             return RedirectToAction("ClientShowAll", "ClientInfo");
         }
 
+        private double getmonthlydue(Clients clients)
+        {
+            var due = clients.Due;
+            var total = clients.Due + clients.MonthlyBill;
+            if (DateTime.Today.Day == clients.JoinDate.Day)
+            {
+                if (total - clients.Due <= clients.MonthlyBill && clients.Due==0)
+                {
+                    due += clients.MonthlyBill;
+
+                }
+            }
+            return due;
+
+
+        }
+
         private double getdue(Clients clients)
         {
-            var due = clients.Due-clients.Pay;
+            var due = clients.Due - clients.Pay;
             var total = clients.Due + clients.MonthlyBill;
             if (DateTime.Today.Day == 29)
             {
@@ -113,12 +130,7 @@ namespace ONS.App.MVC.Controllers
 
 
         }
-
-        private double setdue(Clients clients)
-        {
-            return clients.MonthlyBill + clients.ConnectionFee + clients.RouterFee + clients.Others-clients.Pay;
-        }
-      
+   
         public ActionResult ClientShowAll( int id=0)
         {
             try
@@ -129,14 +141,38 @@ namespace ONS.App.MVC.Controllers
                     ViewBag.msg = 1;
                 var result = _clientservice.GetAll();
                 var result2 = _clientservice.GetAll().Data.Where((d => d.IsValid == 0)).ToList();
+               
+                    foreach (var p in result2)
+                      {
+                          if (p.IsNewMonth == 0)
+                          {
+                              p.Due = getmonthlydue(p);
+                              p.IsNewMonth = 1;
+                              _clientservice.Save(p);
+                              _clientservice.MonthDue(p.ClientId);
+                             
+                          }
+                          if (DateTime.Today.Day == p.JoinDate.Day+1)
+                          {
+                              p.IsNewMonth = 0;
+                              _clientservice.MonthDue(p.ClientId);
+                          }
+                       
 
+                      }
+
+                  
                 double totalbalance = 0;
                 double totaldue = 0;
-                foreach (var p in result2)
-                {
-                    totalbalance += p.Pay;
-                    totaldue += p.Due;
-                }
+               
+                    foreach (var p in result2)
+                    {
+                        totalbalance += p.Pay;
+                        totaldue += p.Due;
+                    }
+
+
+                   
 
                 ViewBag.totalbalance = (totalbalance);
                 ViewBag.totaldue = (totaldue);
@@ -172,6 +208,10 @@ namespace ONS.App.MVC.Controllers
                         key = key1.Substring(0, 3) + "-" + key2.Substring(2);
 
                     }
+                    else if (key1.Contains("Month") && key2.Contains("Year"))
+                    {
+                        key =" ";
+                    }
                     else if (key1.Contains("Month"))
                     {
                         key = key2.Substring(2);
@@ -182,27 +222,46 @@ namespace ONS.App.MVC.Controllers
                     }
                 }
                
-                else if (key2== null)
+              
+                else if (key1.Contains("Address"))
+                {
+                    key = " ";
+
+                }
+                else if (key1.Contains("BandWidth"))
+                {
+                    key = " ";
+
+                }
+                else if (key2 == null)
                 {
                     key = key1;
                 }
-                //else if (searching.Address != null )
-                //{
-                //    key = searching.Address;
-
-                //}
-                //else if (searching.Bandwidth != null )
-                //{
-                //    key = searching.Bandwidth;
-
-                //}
                 else
                 {
                     key =" ";
                 }
                 var result = _clientservice.GetAll(key).Data.Where((d => d.IsValid == 0)).ToList();
+                foreach (var p in result)
+                {
+                    if (p.IsNewMonth == 0)
+                    {
+                        p.Due = getmonthlydue(p);
+                        p.IsNewMonth = 1;
+                        _clientservice.Save(p);
+                        _clientservice.MonthDue(p.ClientId);
+                       
+                    }
+                    if (DateTime.Today.Day == p.JoinDate.Day + 1)
+                    {
+                        p.IsNewMonth = 0;
+                        _clientservice.MonthDue(p.ClientId);
+                    }
 
-                ViewBag.totalclient = result.Count;
+
+                }
+               
+                ViewBag.totalclient1= result.Count;
                 double totalbalance = 0;
                 double totaldue = 0;
                 foreach (var p in result)
@@ -309,6 +368,10 @@ namespace ONS.App.MVC.Controllers
                     {
                         key = searching.Month.Substring(0, 3) + "-" + searching.Year.Substring(2);
 
+                    }
+                    else if (searching.Month.Contains("Month") && searching.Year.Contains("Year"))
+                    {
+                        key = " ";
                     }
                     else if (searching.Month.Contains("Month"))
                     {
@@ -438,7 +501,8 @@ namespace ONS.App.MVC.Controllers
                 collection.UserName = clients.ClientName;
                 if (clients.ClientId == 0)
                 {
-                    clients.Due = setdue(clients);
+                    clients.Due = clients.MonthlyBill + clients.ConnectionFee + clients.RouterFee + clients.Others - clients.Pay;
+
 
                 }
 
@@ -449,7 +513,8 @@ namespace ONS.App.MVC.Controllers
                         ViewBag.msg = 2;
                         return RedirectToAction("Pay", "ClientInfo", new { id = clients.ClientId, id2 = 2 });
                     }
-                    clients.Due = getdue(clients);
+                    clients.Due = getdue(clients); 
+
                     collection.UserId = clients.ClientId;
                 }
                 clients.Pay = clients.Paid + clients.Pay;

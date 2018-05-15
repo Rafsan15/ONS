@@ -155,7 +155,7 @@ namespace ONS.Service
                     query += " Or Amount like " + m + "";
                 }
 
-                query += " order by CollectionDate,Amount,UserName asc  ";
+                query += " order by  CollectionId,CollectionDate DESC  ";
 
                 var dt = DataAccess.GetDataTable(query);
                 for (int i = 0; i < dt.Rows.Count; i++)

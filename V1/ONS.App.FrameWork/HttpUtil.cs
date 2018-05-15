@@ -20,7 +20,7 @@ namespace ONS.App.FrameWork
                     var user = JsonConvert.DeserializeObject<Users>(HttpContext.Current.User.Identity.Name);
                     return user;
                 }
-                catch (Exception e)
+                catch (Exception )
                 {
 
                     return null;

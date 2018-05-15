@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/AfterLogin.cshtml";
 
 }
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -28,6 +29,8 @@
             <ul class="nav navbar-nav">
                 <li class=""><a href="@Url.Action("CostList","CostInfo")">Cost List </a></li>
                 <li class=""><a href="@Url.Action("CreateCost","CostInfo")">New Cost </a></li>
+                <li class=""><a href="@Url.Action("EmployeeList","Admin")">Employee List </a></li>
+                <li class=""><a href="@Url.Action("CreateEmployee","Admin")">New Employee </a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -90,8 +93,8 @@
             <div class="form-group">
                 <label for="Address" class="col-lg-3 control-label">Address</label>
                 <div class="col-lg-9">
-                    <select class="form-control" name="Address" id="AddressId">
-                        <option>Select</option>
+                    <input type="text" class="form-control" name="Address" id="AddressId" placeholder="Address :" list="datalist1">
+                    <datalist id="datalist1">
                         <option>Newtown 5 no</option>
                         <option>Newtown 2 no</option>
                         <option>Newtown 3 no</option>
@@ -103,11 +106,11 @@
                         <option>Balubari</option>
                         <option>Fokir Para</option>
                         <option>Bus Stand</option>
-                    </select>
-                    @Html.ValidationMessageFor(m => m.Address)
+                    </datalist>
+                        @Html.ValidationMessageFor(m => m.Address)
 
 
-                </div>
+</div>
             </div>
         
             <div class="form-group">
@@ -123,17 +126,18 @@
             <div class="form-group">
                 <label for="Package" class="col-lg-3 control-label">Package</label>
                 <div class="col-lg-9">
-                    <select class="form-control" name="Package" id="PackageId">
+                    <input type="text" class="form-control" name="Package" id="PackageId" placeholder="Package :" list="datalist2">
+                    <datalist id="datalist2">
                         <option>1 Mbps</option>
                         <option>2 Mbps</option>
                         <option>3 Mbps</option>
                         <option>4 Mbps</option>
                         <option>5 Mbps</option>
-                    </select>
-                    @Html.ValidationMessageFor(m => m.Package)
+                    </datalist>
+                        @Html.ValidationMessageFor(m => m.Package)
 
 
-                </div>
+</div>
             </div>
         
             <div class="form-group">
@@ -187,7 +191,9 @@
             </div>
       @Html.AntiForgeryToken()
             <div class="form-group">
+                <br/>
                 <div class="col-lg-9 col-lg-offset-3">
+                    <br />
                     @Html.ActionLink("Cancle", "ClientShowAll", new { Controller = "ClientInfo", }, new { @class = "btn btn-warning" })
 
 

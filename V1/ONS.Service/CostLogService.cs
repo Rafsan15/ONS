@@ -26,11 +26,11 @@ namespace ONS.Service
                     CostLog.CostId = GetId();
                     var costDate = DateTime.Now.ToString(string.Format("dd/MMM/yyyy"));
 
-                    query = "insert into CostLog values(" + CostLog.CostId + ",'" + CostLog.CostName.ToUpper() + "','" + costDate + "','" + CostLog.EmployeeName.ToUpper() + "','" + CostLog.IssuedBy.ToUpper() + "'," + CostLog.Amount + ")";
+                    query = "insert into CostLog values(" + CostLog.CostId + ",'" + CostLog.CostName.ToUpper() + "','" + costDate + "','" + CostLog.EmployeeName + "','" + CostLog.IssuedBy + "'," + CostLog.Amount + ")";
                 }
                 else
                 {
-                    query = "update CostLog set CostName='" + CostLog.CostName.ToUpper() + "', IssuedBy='" + CostLog.IssuedBy.ToUpper() + "', EmployeeName='" + CostLog.EmployeeName.ToUpper() + "', Amount=" + CostLog.Amount + " where CostId=" + CostLog.CostId;
+                    query = "update CostLog set CostName='" + CostLog.CostName.ToUpper() + "', IssuedBy='" + CostLog.IssuedBy + "', EmployeeName='" + CostLog.EmployeeName + "', Amount=" + CostLog.Amount + " where CostId=" + CostLog.CostId;
 
                 }
 
@@ -98,11 +98,10 @@ namespace ONS.Service
             var result = new Result<List<CostLog>>() { Data = new List<CostLog>() };
             try
             {
-                key = key.ToUpper();
                 string query = "select * from CostLog ";
                 if (ValidationHelper.IsStringValid(key))
                 {
-                    query += " where CostName like '%" + key + "%' ";
+                    query += " where CostName like '%" + key.ToUpper() + "%' ";
                 }
                 if (ValidationHelper.IsStringValid(key))
                 {
@@ -114,14 +113,14 @@ namespace ONS.Service
                 }
                 if (ValidationHelper.IsStringValid(key))
                 {
-                    query += " OR CostDate like '%" + key + "%'";
+                    query += " OR CostDate like '%" + key.ToUpper() + "%'";
                 }
                 if (ValidationHelper.IsIntValid(key))
                 {
                     var m = Int32.Parse(key);
                     query += " OR Amount like " + key + "";
                 }
-
+                query += " order by CostId DESC ";
                 var dt = DataAccess.GetDataTable(query);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -184,8 +183,8 @@ namespace ONS.Service
                 u.CostId = Int32.Parse(row["CostId"].ToString());
                 u.Amount = Int32.Parse(row["Amount"].ToString());
                 u.CostName = row["CostName"].ToString().Substring(0, 1).ToUpper() + row["CostName"].ToString().Substring(1).ToLower();
-                u.EmployeeName = row["EmployeeName"].ToString().Substring(0, 1).ToUpper() + row["EmployeeName"].ToString().Substring(1).ToLower();
-                u.IssuedBy = row["IssuedBy"].ToString().Substring(0, 1).ToUpper() + row["IssuedBy"].ToString().Substring(1).ToLower();
+                u.EmployeeName = row["EmployeeName"].ToString();
+                u.IssuedBy = row["IssuedBy"].ToString();
                 u.CostDate = Convert.ToDateTime(row["CostDate"]);
 
                 return u;

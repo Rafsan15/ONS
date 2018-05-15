@@ -1,176 +1,428 @@
-﻿
+﻿@model FMS.FrameWork.Result<List<ONS.Core.Entities.Employees>>
 @{
     ViewBag.Title = "CreateCost";
     Layout = "~/Views/Shared/AfterLogin.cshtml";
 }
 
+<head runat="server">
+    <title>
+        Create Cost
+    </title>
+    <style type="text/css">
+        td {
+            width: 50px;
+        }
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="@Url.Action("ClientShowAll","ClientInfo")">Home</a><span class="sr-only">(current)</span>
+        th {
+            width: 50px;
+        }
+    </style>
+
+    @section scripts
+    {
+        @*<script src="~/Scripts/jquery-1.11.2.js"></script>
+
+        <link href="~/Content/dataTables.tableTools.2.2.4.css" rel="stylesheet" />
+        <link href="~/Content/jquery.dataTables.min.1.10.7.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery.dataTable.min.1.10.7.js"></script>
+        <script src="~/Scripts/jquery.dataTable.tabletools.min.2.2.4.js"></script>*@
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+
+                //var table = $('#datatable').DataTable();
+                //var tableTools = new $.fn.dataTable.TableTools(table);
+                //$(tableTools.fnContainer()).insertBefore('#datatable_wrapper');
+                //$("#datatable_filter").hide();
+
+              
+                $("#salaryid").hide();
+                $("#OfficeId").hide();
+                $("#emptyid").hide();
+
+                $('#salid').click(function () {
+                    $("#cost").hide();
+                    $("#salaryid").show();
+                    $("#emptyid").show();
+                    $("#OfficeId").hide();
+                    $("#btnid").hide();
+                });
+                $('#offid').click(function () {
+                    $("#cost").hide();
+                    $("#OfficeId").show();
+                    $("#salaryid").hide();
+                    $("#emptyid").hide();
+                    $("#btnid").show();
+                });
+                $('#newid').click(function () {
+                    $("#cost").show();
+                    $("#salaryid").hide();
+                    $("#OfficeId").hide();
+                    $("#emptyid").hide();
+                    $("#btnid").show();
+                });
+                $('#salid2').click(function () {
+                    $("#cost").hide();
+                    $("#salaryid").show();
+                    $("#emptyid").show();
+                    $("#OfficeId").hide();
+                    $("#btnid").hide();
+                });
+                $('#offid2').click(function () {
+                    $("#cost").hide();
+                    $("#OfficeId").show();
+                    $("#salaryid").hide();
+                    $("#emptyid").hide();
+                    $("#btnid").show();
+                });
+                $('#newid2').click(function () {
+                    $("#cost").show();
+                    $("#salaryid").hide();
+                    $("#OfficeId").hide();
+                    $("#emptyid").hide();
+                    $("#btnid").show();
+                });
+
+                $('#checkboxall').click(function () {
+                    if ($(this).is(":checked"))
+                        $('.checkboxid').prop('checked', true);
+                    else {
+                        $('.checkboxid').prop('checked', false);
+                    }
+
+
+                });
+
+               
+
+            });
+
+
+
+        </script>
+
+    }
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("ClientShowAll","ClientInfo")">Home</a><span class="sr-only">(current)</span>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                <ul class="nav navbar-nav nav-pills">
+                    <li class=""><a href="@Url.Action("CollectionLog","ClientInfo")">Collections </a></li>
+
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="@Url.Action("ClientForm","ClientInfo")">Add Client </a></li>
+
+                </ul>
+                <ul class="nav navbar-nav nav-pills navbar-right">
+                    <li class=""><a href="@Url.Action("AdminProfile","ClientInfo")"><span class=" glyphicon glyphicon-user"></span> </a></li>
+
+                    <li class=""><a href="@Url.Action("Index","Home")"><span class=" glyphicon glyphicon-log-out"></span> </a></li>
+
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="@Url.Action("CostList","CostInfo")">Cost List </a></li>
+                    <li class=""><a href="@Url.Action("CreateCost","CostInfo")">New Cost </a></li>
+                    <li class=""><a href="@Url.Action("EmployeeList","Admin")">Employee List </a></li>
+                    <li class=""><a href="@Url.Action("CreateEmployee","Admin")">New Employee </a></li>
+
+                </ul>
+
+            </div>
         </div>
+    </nav>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-            <ul class="nav navbar-nav nav-pills">
-                <li class=""><a href="@Url.Action("CollectionLog","ClientInfo")">Collections </a></li>
-
-            </ul>
-            <ul class="nav navbar-nav">
-                <li class=""><a href="@Url.Action("ClientForm","ClientInfo")">Add Client </a></li>
-
-            </ul>
-            <ul class="nav navbar-nav nav-pills navbar-right">
-                <li class=""><a href="@Url.Action("AdminProfile","ClientInfo")"><span class=" glyphicon glyphicon-user"></span> </a></li>
-
-                <li class=""><a href="@Url.Action("Index","Home")"><span class=" glyphicon glyphicon-log-out"></span> </a></li>
-
-            </ul>
-            <ul class="nav navbar-nav">
-                <li class=""><a href="@Url.Action("CostList","CostInfo")">Cost List </a></li>
-                <li class=""><a href="@Url.Action("CreateCost","CostInfo")">New Cost </a></li>
-
-            </ul>
-
+    @if (ViewBag.msg == 2)
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Oh snap!</strong>  Your Paid a Little Much Then Your Due.
         </div>
-    </div>
-</nav>
+    }
 
-@if (ViewBag.msg == 2)
-{
-    <div class="alert alert-dismissible alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Oh snap!</strong>  Your Paid a Little Much Then Your Due.
-    </div>
-}
+
+  
+        <fieldset>
+            <div class="col-md-2"id="btnid">
+
+                <div class="container-fluid">
+                    @*<button class="btn btn-info">Salary</button>
+                        <br />
+                        <br />
+                        <br />
+                        <button class="btn btn-info">Office Rent</button>*@
+
+                    <div class="btn-group-vertical">
+                        <a href="#" class="btn btn-info" id="salid" onclick="salary()">Salary</a>
+                        <br />
+                        <a href="#" class="btn btn-info" id="offid" onclick="OfficeRent()">Office Rent</a>
+                        <br />
+                        <a href="#" class="btn btn-info" id="newid">New Cost</a>
+                        <br />
+                        <a href="#" class="btn btn-info">Button</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6" id="emptyid">
+
+                <div class="container-fluid">
+                
+                    
+                    <div class="btn-group btn-group-justified">
+                        <a href="#" class="btn btn-info" id="salid2">Salary</a>
+
+                        <a href="#" class="btn btn-info" id="offid2">Office Rent</a>
+                        <a href="#" class="btn btn-info" id="newid2">New Cost</a>
+                        <a href="#" class="btn btn-info">Button</a>
+                    </div>
+
+                    @*<div class="btn-group btn-group-justified">
+                        <a href="#" class="btn btn-info" id="salid" >Salary</a>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <a href="#" class="btn btn-info" id="offid" >Office Rent</a>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+
+                        <a href="#" class="btn btn-info" id="newid">New Cost</a>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+
+                        <a href="#" class="btn btn-info">Button</a>
+                    </div>*@
+                </div>
+            </div>
+
+            <div class="col-md-8" id="cost">
 
 
 @using (Html.BeginForm("CreateCost", "CostInfo"))
 {
-    <fieldset>
-        <div class="col-md-2"></div>
 
-        <div class="col-md-8">
+    <div class="form-group">
+        <label for="CostName" class="col-md-3  control-label">Cost Name</label>
+        <div class="col-md-9">
+            <input type="text" class="form-control" name="CostName" id="CostNameId" placeholder="Cost Name:" list="datalist1">
+            <datalist id="datalist1">
+                <option>Salary</option>
+                <option>Transportation</option>
+                <option>Guest Bill</option>
+                <option>Internet Bill</option>
+                <option>Other Cost</option>
+                <option>Electricity Bill</option>
+                <option>Stationary Cost</option>
+                <option>Device Cost</option>
+                <option>Oil Cost</option>
+                <option>Mobile Bill</option>
+                <option>Construction Bill</option>
+                <option>Goods Bill</option>
+                <option>Tower Bill</option>
+                <option>Vehicle Bill</option>
+                <option>Intensive</option>
+                <option>DA</option>
+                <option>Festive </option>
+            </datalist>
+        </div>
+    </div>
 
-
-            <div class="form-group">
-                <label for="CostName" class="col-md-3 control-label">Cost Name</label>
-                <div class="col-md-9">
-                    <input type="text" name="CostName"  class="form-control" id="CostNameId" placeholder="Cost Name">
-                </div>
-            </div>
-
-
-
-            <div class="form-group">
-                <label for="IssuedBy" class="col-lg-3 control-label">Issued By</label>
-                <div class="col-lg-9">
-                    <select class="form-control" name="IssuedBy" id="IssuedById">
-                        <option>Issued By</option>
-                        <option>Jakir</option>
-                        <option>Rafiq</option>
-                        <option>Moin</option>
-                    </select>
-                    
-
-
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="EmployeeName" class="col-lg-3 control-label">Employee Name</label>
-                <div class="col-lg-9">
-                    <select class="form-control" name="EmployeeName" id="EmployeeNameId">
-                        <option>Employee Name</option>
-                        <option>Rafsan</option>
-                        <option>Shohel</option>
-                        <option>Pintu</option>
-                        <option>Kabir</option>
-                        <option>John</option>
-                    </select>
-                    
+    <div class="form-group">
+        <label for="IssuedBy" class="col-lg-3 control-label">Issued By</label>
+        <div class="col-lg-9">
+            <select class="form-control" name="IssuedBy" id="IssuedById">
+                <option>Issued By</option>
+                <option>Jakir</option>
+                <option>Rafiq</option>
+                <option>Moin</option>
+            </select>
 
 
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="Amount" class="col-md-3  control-label">Amount</label>
-                <div class="col-md-9">
-                    <input type="text" name="Amount" class="form-control" id="AmountId" placeholder="Amount">
-                </div>
-            </div>
-            @Html.AntiForgeryToken()
-
-
-            <div class="form-group">
-                <div class="col-md-9 col-lg-offset-3">
-                    <br />
-                    <button type="submit" class="btn btn-primary">Pay</button>
-                    @Html.ActionLink("Cancle", "ClientShowAll", new { Controller = "ClientInfo"}, new { @class = "btn btn-success" })
-
-
-                    @*<a class="btn  btn-success" data-toggle="modal" data-target=".bootstrapmodal">Full Pay</a>
-                    <div class="modal fade bootstrapmodal">
-                        <div class="modal-dialog">
-
-
-                            <div class="modal-content">
-
-
-                                <div class="modal-header">
-
-                                    <button data-dismiss="modal" class="close">
-                                        <span>&times;</span>
-                                    </button>
-                                    <p>Confirm!!</p>
-
-
-                                </div>
-                                <div class="modal-title">
-
-                                </div>
-
-                                <div class="modal-body">
-
-                                    <p>Are You Sure You Want To Pay @Model.Data.Due Taka</p>
-
-
-                                </div>
-
-                                <div class="modal-footer">
-
-
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                    <button type="submit" name="Pay" value="@Model.Data.Due" class="btn btn-primary">Pay</button>
-
-                                    @Html.ActionLink("Pay", "FullPay", new { Controller = "ClientInfo", id = Model.Data.ClientId }, new { @class = "btn btn-success" })
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>*@
-
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-
-                </div>
-            </div>
 
         </div>
-        <div class="col-md-2"></div>
-    </fieldset>
+    </div>
+
+    <div class="form-group">
+        <label for="EmployeeName" class="col-lg-3 control-label">Employee Name</label>
+        <div class="col-lg-9">
+            <select class="form-control" name="EmployeeName" id="EmployeeNameId">
+                <option>Employee Name</option>
+                @if (Model.Data != null)
+                {
+                    foreach (var p in Model.Data)
+                    {
+                        <option>@p.EmployeeName</option>
+                    }
+                }
+             
+            </select>
+
+
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Amount" class="col-md-3  control-label">Amount</label>
+        <div class="col-md-9">
+            <input type="text" name="Amount" class="form-control" id="AmountId" placeholder="Amount">
+        </div>
+    </div>
+
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-group">
+        <div class="col-md-9 col-lg-offset-3">
+            <br />
+            <button type="submit" class="btn btn-primary">Pay</button>
+            @Html.ActionLink("Cancle", "ClientShowAll", new {Controller = "ClientInfo"}, new {@class = "btn btn-success"})
+
+
+                      
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+
+        </div>
+    </div>
 }
+            </div>
+
+            <div class="container-fluid" id="salaryid">
+                <div class="container" style="margin:15px auto">
+
+
+                    @using (Html.BeginForm("PayAll", "CostInfo"))
+                    {
+
+                        <br />
+                        <br />
+                        <div class="col-md-3">
+                            <input type="text" name="Amount" class="form-control" id="AmountId" placeholder="Amount">
+                        </div>
+                        <div class="col-md-1">
+                            <input type="submit" class="btn btn-info" value=" Pay" onclick="return confirm('Are You Sure ??')" />
+                        </div>
+                        <div class="col-md-8">
+                            <input type="submit" class="btn btn-info" value="Full Pay" onclick="return confirm('Are You Sure ??')" />
+                        </div>
+                        <br />
+                        <br />
+                        <table class="table  table-hover " id="datatable">
+
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="checkboxall"></th>
+                                    <th>Employee Name</th>
+                                    <th>Designation</th>
+                                    <th>Salary</th>
+                                    <th>Due</th>
+                                    <th>Detail</th>
+                                    @*<th>Pay</th>*@
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var p in Model.Data)
+                                {
+
+                                    <tr class="success">
+                                        <td><input type="checkbox" class="checkboxid" name="EmployeeId" value=@p.EmployeeId></td>
+
+                                        <td>@p.EmployeeName</td>
+                                        <td>@p.Designation</td>
+                                        <td>@p.Salary</td>
+                                        <td>@p.Due</td>
+
+                                        <td>
+                                            @Html.ActionLink("Details", "EmployeeDetail", new { Controller = "Admin", id = p.EmployeeId })
+                                        </td>
+                                        @*<td>
+                                            @Html.ActionLink("Pay", "Pay", new { Controller = "ClientInfo", id = p.EmployeeId })
+                                        </td>*@
+
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+                    }
+                </div>
+
+            </div>
+
+            <div class="col-md-8" id="OfficeId">
+
+
+                @using (Html.BeginForm("CreateCost", "CostInfo"))
+                {
+
+
+                    <div class="form-group">
+                        <label for="CostName" class="col-md-3  control-label">Cost Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="CostName" id="CostNameId" placeholder="Office Name:" list="datalist3">
+                            <datalist id="datalist3">
+                                <option>Bus Stand Office</option>
+                                <option>Pulhat Office</option>
+                                <option>Fokir para Office</option>
+
+                            </datalist>
+                        </div>
+                    </div>
 
 
 
+                    <div class="form-group">
+                        <label for="Amount" class="col-md-3  control-label">Amount</label>
+                        <div class="col-md-9">
+                            <input type="text" name="Amount" class="form-control" id="AmountId" placeholder="Amount">
+                        </div>
+                    </div>
+
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="form-group">
+                        <div class="col-md-9 col-lg-offset-3">
+                            <br />
+                            <button type="submit" class="btn btn-primary">Pay</button>
+                            @Html.ActionLink("Cancle", "ClientShowAll", new {Controller = "ClientInfo"}, new {@class = "btn btn-success"})
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+
+        </fieldset>
+  
+
+
+</body>
