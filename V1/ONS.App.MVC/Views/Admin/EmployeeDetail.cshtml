@@ -43,25 +43,31 @@
     </div>
 </nav>
 
+@*<div class="col-lg-2"></div>
+    <div class="col-lg-10"></div>*@
+   
 
-@using (Html.BeginForm("CreateEmployee", "Admin"))
-{
+
+
     <fieldset>
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8">
+    <div class="col-lg-3"></div>
+    @using (Html.BeginForm("CreateEmployee", "Admin"))
+    {
+        <div class="col-lg-6">
 
-            <input type="hidden" name="EmployeeId" value="@Model.Data.EmployeeId"/>
+
+            <input type="hidden" name="EmployeeId" value="@Model.Data.EmployeeId" />
             <div class="form-group">
-                <label for="EmployeeName" class="col-lg-3 control-label">Employee Name</label>
-                <div class="col-lg-9">
-                    <input type="text" name="EmployeeName"  value="@Model.Data.EmployeeName" class="form-control" id="EmployeeNameId" placeholder="Employee Name">
+                <label for="EmployeeName" class="col-lg-4 control-label">Employee Name</label>
+                <div class="col-lg-8">
+                    <input type="text" name="EmployeeName" value="@Model.Data.EmployeeName" class="form-control" id="EmployeeNameId" placeholder="Employee Name">
                     @Html.ValidationMessageFor(m => m.Data.EmployeeName)
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="FatherName" class="col-lg-3 control-label">Father Name</label>
-                <div class="col-lg-9">
+                <label for="FatherName" class="col-lg-4 control-label">Father Name</label>
+                <div class="col-lg-8">
                     <input type="text" name="FatherName" value="@Model.Data.FatherName" class="form-control" id="FatherNameId" placeholder="Father Name">
                     @Html.ValidationMessageFor(m => m.Data.FatherName)
 
@@ -70,8 +76,8 @@
             </div>
 
             <div class="form-group">
-                <label for="MotherName" class="col-lg-3 control-label">Mother Name</label>
-                <div class="col-lg-9">
+                <label for="MotherName" class="col-lg-4 control-label">Mother Name</label>
+                <div class="col-lg-8">
                     <input type="text" name="MotherName" class="form-control" value="@Model.Data.MotherName" id="MotherNameId" placeholder="Mother Name">
                     @Html.ValidationMessageFor(m => m.Data.MotherName)
 
@@ -80,9 +86,9 @@
             </div>
 
             <div class="form-group">
-                <label for="Email" class="col-lg-3 control-label">Email</label>
-                <div class="col-lg-9">
-                    <input type="text" name="Email" class="form-control" value="@Model.Data.Email "id="EmailId" placeholder="Email">
+                <label for="Email" class="col-lg-4 control-label">Email</label>
+                <div class="col-lg-8">
+                    <input type="text" name="Email" class="form-control" value="@Model.Data.Email " id="EmailId" placeholder="Email">
                     @Html.ValidationMessageFor(m => m.Data.Email)
 
 
@@ -90,8 +96,8 @@
             </div>
 
             <div class="form-group">
-                <label for="PresentAddress" class="col-lg-3 control-label">Present Address</label>
-                <div class="col-lg-9">
+                <label for="PresentAddress" class="col-lg-4 control-label">Present Address</label>
+                <div class="col-lg-8">
                     <input type="text" name="PresentAddress" class="form-control" value="@Model.Data.PresentAddress" id="PresentAddressId" placeholder="Present Address">
                     @Html.ValidationMessageFor(m => m.Data.PresentAddress)
 
@@ -100,8 +106,8 @@
             </div>
 
             <div class="form-group">
-                <label for="PermanentAddress" class="col-lg-3 control-label">Permanent Address</label>
-                <div class="col-lg-9">
+                <label for="PermanentAddress" class="col-lg-4 control-label">Permanent Address</label>
+                <div class="col-lg-8">
                     <input type="text" name="PermanentAddress" class="form-control" value="@Model.Data.PermanentAddress" id="PermanentAddressId" placeholder="Permanent Address">
                     @Html.ValidationMessageFor(m => m.Data.PermanentAddress)
 
@@ -110,8 +116,8 @@
             </div>
 
             <div class="form-group">
-                <label for="Nid" class="col-lg-3 control-label">Nid</label>
-                <div class="col-lg-9">
+                <label for="Nid" class="col-lg-4 control-label">Nid</label>
+                <div class="col-lg-8">
                     <input type="text" name="Nid" class="form-control" id="NidId" value="@Model.Data.Nid" placeholder="Nid">
                     @Html.ValidationMessageFor(m => m.Data.Nid)
 
@@ -121,19 +127,19 @@
 
             <div>
                 <div class="form-group">
-                    <label for="DOB" class="col-lg-3 control-label">Date Of Birth</label>
-                    <div class="col-lg-9">
-                        <input class="form-control" readonly="readonly" id="DOBId" name="DOB" value="@Model.Data.DOB" type="text"  placeholder="Date of Brith">
+                    <label for="DOB" class="col-lg-4 control-label">Date Of Birth</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" readonly="readonly" id="DOBId" name="DOB" value="@Model.Data.DOB" type="text" placeholder="Date of Brith">
                     </div>
                     @Html.ValidationMessageFor(m => m.Data.DOB)
                 </div>
 
             </div>
-            
+
             <div>
                 <div class="form-group">
-                    <label for="JoinDate" class="col-lg-3 control-label">Join Date</label>
-                    <div class="col-lg-9">
+                    <label for="JoinDate" class="col-lg-4 control-label">Join Date</label>
+                    <div class="col-lg-8">
                         <input class="form-control" readonly="readonly" id="JoinDateId" name="JoinDate" value="@Model.Data.JoinDate" type="text" placeholder="Date of Brith">
                     </div>
                     @Html.ValidationMessageFor(m => m.Data.JoinDate)
@@ -144,8 +150,8 @@
 
 
             <div class="form-group">
-                <label for="Mobile" class="col-lg-3 control-label">Mobile</label>
-                <div class="col-lg-9">
+                <label for="Mobile" class="col-lg-4 control-label">Mobile</label>
+                <div class="col-lg-8">
                     <input type="text" name="Mobile" value="@Model.Data.Mobile" class="form-control" id="MobileId" placeholder="Mobile">
                     @Html.ValidationMessageFor(m => m.Data.Mobile)
 
@@ -154,8 +160,8 @@
             </div>
 
             <div class="form-group">
-                <label for="Designation" class="col-lg-3 control-label">Designation </label>
-                <div class="col-lg-9">
+                <label for="Designation" class="col-lg-4 control-label">Designation </label>
+                <div class="col-lg-8">
                     <input type="text" name="Designation" class="form-control" value="@Model.Data.Designation" id="DesignationId" placeholder="Designation">
                     @Html.ValidationMessageFor(m => m.Data.Designation)
 
@@ -164,19 +170,19 @@
             </div>
 
             <div class="form-group">
-                <label for="Salary" class="col-lg-3 control-label">Salary</label>
-                <div class="col-lg-9">
+                <label for="Salary" class="col-lg-4 control-label">Salary</label>
+                <div class="col-lg-8">
                     <input type="text" name="Salary" class="form-control" value="@Model.Data.Salary" id="OthersId" placeholder="Salary">
                     @Html.ValidationMessageFor(m => m.Data.Salary)
 
 
                 </div>
             </div>
-            
+
 
             <div class="form-group">
-                <label for="Due" class="col-lg-3 control-label">Due</label>
-                <div class="col-lg-9">
+                <label for="Due" class="col-lg-4 control-label">Due</label>
+                <div class="col-lg-8">
                     <input type="text" name="Due" readonly="readonly" class="form-control" value="@Model.Data.Due" id="DueId" placeholder="Due">
                     @Html.ValidationMessageFor(m => m.Data.Due)
 
@@ -187,11 +193,11 @@
 
             @Html.AntiForgeryToken()
             <div class="form-group">
-                <div class="col-lg-9 col-lg-offset-3">
+                <div class="col-lg-8 col-lg-offset-4">
 
 
                     <button type="submit" class="btn btn-primary">Save</button>
-                    
+
                     <a class="btn  btn-danger" data-toggle="modal" data-target=".bootstrapmodal">Delete</a>
                     <div class="modal fade bootstrapmodal">
                         <div class="modal-dialog">
@@ -231,8 +237,25 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2"></div>
+    }
 
-    </fieldset>
-}
+        
+        <div class="col-lg-3">
+        <div>
+            <img src="~/DP/@Model.Data.Propic" alt="Paris" style="height: 250px; width: 250px; ">
+
+        </div>
+
+
+        @using (Html.BeginForm("Propicup", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {  <input type="hidden" name="id" value="@Model.Data.EmployeeId" />
+            <label for="file">Upload Image:</label>
+            <input type="file" name="file" id="file" style="width: 100%;" />
+            <input type="submit" value="Upload" class="btn btn-success" />
+
+            }
+    </div>
+
+</fieldset>
+
 

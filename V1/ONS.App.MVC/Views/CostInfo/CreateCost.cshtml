@@ -9,17 +9,23 @@
         Create Cost
     </title>
     <style type="text/css">
-        td {
-            width: 50px;
+       .table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            color: black;
         }
 
+        td,
         th {
-            width: 50px;
+            padding: 5%;
         }
     </style>
 
+    
+
     @section scripts
     {
+  
         @*<script src="~/Scripts/jquery-1.11.2.js"></script>
 
         <link href="~/Content/dataTables.tableTools.2.2.4.css" rel="stylesheet" />
@@ -36,7 +42,8 @@
                 //var tableTools = new $.fn.dataTable.TableTools(table);
                 //$(tableTools.fnContainer()).insertBefore('#datatable_wrapper');
                 //$("#datatable_filter").hide();
-
+              
+               
               
                 $("#salaryid").hide();
                 $("#OfficeId").hide();
@@ -326,12 +333,12 @@
 
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" id="checkboxall"></th>
-                                    <th>Employee Name</th>
-                                    <th>Designation</th>
-                                    <th>Salary</th>
-                                    <th>Due</th>
-                                    <th>Detail</th>
+                                    <th ><input type="checkbox" id="checkboxall"></th>
+                                    <th >Employee Name</th>
+                                    <th >Designation</th>
+                                    <th >Salary</th>
+                                    <th >Due</th>
+                                    <th >Detail</th>
                                     @*<th>Pay</th>*@
 
 

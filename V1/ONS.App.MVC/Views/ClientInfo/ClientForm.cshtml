@@ -4,7 +4,14 @@
     Layout = "~/Views/Shared/AfterLogin.cshtml";
 
 }
-
+<head>
+    <title>Create Form</title>
+    
+    @section scripts
+    {
+      
+    }
+</head>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -55,7 +62,7 @@
             <div class="form-group">
                 <label for="UserName" class="col-lg-3 control-label">User Name</label>
                 <div class="col-lg-9">
-                    <input type="text" name="UserName" class="form-control" id="UserNameId" placeholder="User Name">
+                    <input type="text" name="UserName" class="form-control" id="UserNameId" placeholder="User Name >
                     @Html.ValidationMessageFor(m=>m.UserName)
                 </div>
             </div>

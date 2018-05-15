@@ -89,50 +89,50 @@
                     </li>
 
 
-                    @*<li>
-                        <a class="btn  btn-success" data-toggle="modal" data-target=".bootstrapmodal">Balance</a>
+                   <li>
+                    @*    <a class="btn  btn-success" data-toggle="modal" data-target=".bootstrapmodal">Balance</a>
 
-                        <div class="modal fade bootstrapmodal">
-                            <div class="modal-dialog">
-
-
-                                <div class="modal-content">
+    <div class="modal fade bootstrapmodal">
+        <div class="modal-dialog">
 
 
-                                    <div class="modal-header">
-                                        <button data-dismiss="modal" class="close">
-                                            <span>&times;</span>
-                                        </button>
+            <div class="modal-content">
 
 
-                                    </div>
-                                    <div class="modal-title">
+                <div class="modal-header">
+                    <button data-dismiss="modal" class="close">
+                        <span>&times;</span>
+                    </button>
 
-                                    </div>
 
-                                    <div class="modal-body">
+                </div>
+                <div class="modal-title">
 
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <span class="badge">@ViewBag.totalbalance</span><br />
-                                                <span class="badge">@ViewBag.totalbalance1</span>
-                                                Balance Is :
-                                            </li>
-                                            <li class="list-group-item">
-                                                <span class="badge">@ViewBag.totaldue</span><br />
-                                                <span class="badge">@ViewBag.totaldue1</span>
-                                                Due Is:
-                                            </li>
+                </div>
 
-                                        </ul>
-                                    </div>
-                                    <div class="modal-footer">
+                <div class="modal-body">
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>*@
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge">@ViewBag.totalbalance</span><br />
+                            <span class="badge">@ViewBag.totalbalance1</span>
+                            Balance Is :
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">@ViewBag.totaldue</span><br />
+                            <span class="badge">@ViewBag.totaldue1</span>
+                            Due Is:
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>*@
+    </li>
 
                     <li class=""><a href="@Url.Action("ClientForm","ClientInfo")">Add Client </a></li>
 
@@ -295,7 +295,7 @@
                <thead>
                    <tr>
                        <th><input type="checkbox" id="checkboxall"></th>
-
+                       @*<th>Profile Pic<th>*@
                        <th>Id</th>
                        <th>Name</th>
                        <th>Email</th>
@@ -317,7 +317,10 @@
 
                        <tr class="success">
                            <td><input type="checkbox" class="checkboxid" name="EmployeeId" value=@p.EmployeeId></td>
-
+                           @*<td>
+                              <img src="~/DP/@p.Propic" alt="Paris" style="height: 50px; width: 50px; ">
+                              
+                           </td>*@
                            <td>@p.EmployeeId</td>
                            <td>@p.EmployeeName</td>
 

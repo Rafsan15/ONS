@@ -232,6 +232,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
+    <Folder Include="DP\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ONS.App.FrameWork;
 using ONS.Core.Entities;
 using ONS.Core.Service.Interfaces;
 
@@ -224,7 +225,23 @@ namespace ONS.App.MVC.Controllers
             }
         }
 
+        public ActionResult Propicup(HttpPostedFileBase file,int id)
+        {
+            if (file != null)
+            {
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(
+                    Server.MapPath("~/DP"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+                var user = _employeeservice.GetById(id);
+                user.Data.Propic = pic;
+                _employeeservice.Save(user.Data);
 
+            }
+            
+            return RedirectToAction("EmployeeList", "Admin");
+        }
 
     }
 }
